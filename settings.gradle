@@ -1,0 +1,4 @@
+rootProject.name = 'tesa'
+
+include 'tesa-core'
+include 'tesa-vanilla'
