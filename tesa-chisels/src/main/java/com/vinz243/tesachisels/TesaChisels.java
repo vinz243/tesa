@@ -1,8 +1,7 @@
-package com.vinz243.tesavanilla;
+package com.vinz243.tesachisels;
 
 import com.vinz243.tesacore.TesaCommand;
 import com.vinz243.tesacore.TesaCommandManager;
-import com.vinz243.tesacore.VanillaTesaExecutor;
 import com.vinz243.tesacore.api.TessellatorRegistry;
 import com.vinz243.tesacore.transforms.ReflectionTransform;
 import com.vinz243.tesacore.transforms.TransformRepository;
@@ -16,13 +15,13 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(
-        modid = TesaVanilla.MOD_ID,
-        name = TesaVanilla.MOD_NAME,
-        version = TesaVanilla.VERSION
+        modid = TesaChisels.MOD_ID,
+        name = TesaChisels.MOD_NAME,
+        version = TesaChisels.VERSION
 )
-public class TesaVanilla {
-    public static final String MOD_ID = "tesa-vanilla";
-    public static final String MOD_NAME = "Tesa Vanilla";
+public class TesaChisels {
+    public static final String MOD_ID = "tesa-chisels";
+    public static final String MOD_NAME = "Tesa Chisels";
     public static final String VERSION = "1.0-SNAPSHOT";
 
     private final TransformRepository transformRepository = new TransformRepository();
@@ -31,7 +30,7 @@ public class TesaVanilla {
      * This is the instance of your mod as created by Forge. It will never be null.
      */
     @Instance(MOD_ID)
-    public static TesaVanilla INSTANCE;
+    public static TesaChisels INSTANCE;
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -61,6 +60,6 @@ public class TesaVanilla {
         final TesaCommandManager commandManager = new TesaCommandManager(tessellatorRegistry);
         event.registerServerCommand(new TesaCommand(commandManager));
 
-        MinecraftForge.EVENT_BUS.register(new VanillaTesaExecutor(tessellatorRegistry));
+        MinecraftForge.EVENT_BUS.register(new ChiselsTesaExecutor(tessellatorRegistry));
     }
 }

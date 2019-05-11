@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "tesa-vanilla",
+    "name": "Tesa Vanilla",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

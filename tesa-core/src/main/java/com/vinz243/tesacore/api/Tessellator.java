@@ -1,5 +1,6 @@
 package com.vinz243.tesacore.api;
 
+import com.vinz243.tesacore.UsageTracker;
 import com.vinz243.tesacore.context.CommandContext;
 import com.vinz243.tesacore.helpers.Matrix;
 import com.vinz243.tesacore.helpers.TesaCursor;
@@ -16,7 +17,6 @@ import java.util.function.Consumer;
 
 public class Tessellator implements IMaskable {
     private List<Transform> transforms = new ArrayList<>();
-    private boolean chiselLocked = false;
     private boolean enabled = true;
     private Set<Integer> debouncedBlocks = new HashSet<>();
 
@@ -25,6 +25,8 @@ public class Tessellator implements IMaskable {
 
     private final TesaCursor cursor = new TesaCursor();
     private final TransformRepository transformRepository;
+
+    private final UsageTracker usageTracker = new UsageTracker();
 
     public Tessellator(TransformRepository transformRepository) {
         this.transformRepository = transformRepository;
@@ -56,6 +58,10 @@ public class Tessellator implements IMaskable {
         apply(pos, applyFunction, transforms, placedBlocks);
     }
 
+    public UsageTracker getUsageTracker() {
+        return usageTracker;
+    }
+
     private void apply(Vector pos, Consumer<TransformResult> applyFunction, List<Transform> transforms, Set<Integer> placedBlocks) {
         Map<Vector, TransformResult> results = new HashMap<>();
         results.put(pos, new TransformResult(pos, pos, Matrix.IDENTITY_3));
@@ -82,16 +88,6 @@ public class Tessellator implements IMaskable {
             if (!r.isMasked()) applyFunction.accept(r);
         });
     }
-
-
-    public boolean isChiselLocked() {
-        return chiselLocked;
-    }
-
-    public void setChiselLocked(boolean chiselLocked) {
-        this.chiselLocked = chiselLocked;
-    }
-
 
     public void clear() {
         transforms.clear();

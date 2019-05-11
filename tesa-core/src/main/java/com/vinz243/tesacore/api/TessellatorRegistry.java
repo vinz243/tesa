@@ -18,4 +18,8 @@ public class TessellatorRegistry {
     public Tessellator getTessellator (Context context) {
         return tessellators.computeIfAbsent(context.getPlayer().getUniqueID(), x -> new Tessellator(transformRepository));
     }
+
+    public boolean hasTessellator (Context context) {
+        return tessellators.containsKey(context.getPlayer().getUniqueID());
+    }
 }

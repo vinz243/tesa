@@ -1,3 +1,6 @@
 .gradle
 .idea
 tesa-vanilla/run
+tesa-vanilla/build
+tesa-chisels/run
+tesa-chisels/build
