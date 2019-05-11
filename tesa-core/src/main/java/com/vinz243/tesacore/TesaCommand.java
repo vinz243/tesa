@@ -9,6 +9,7 @@ import com.vinz243.tesacore.exceptions.InvalidSyntaxException;
 import com.vinz243.tesacore.helpers.StringComponent;
 import com.vinz243.tesacore.helpers.Vector;
 import com.vinz243.tesacore.transforms.NoSuchTransformException;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class TesaCommand implements ICommand {
+public class TesaCommand extends CommandBase {
     private final TesaCommandManager tesaManager;
 
     public TesaCommand(TesaCommandManager tesaCommandManager) {

@@ -9,6 +9,7 @@ buildscript {
 
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.2'
     }
 }
 
@@ -19,9 +20,11 @@ allprojects {
 
 subprojects {
     apply plugin: 'net.minecraftforge.gradle.forge'
+    apply plugin: 'com.github.johnrengelman.shadow'
 
     repositories {
         maven { url = "http://maven.sk89q.com/repo/"}
+        maven { url = "http://dvs1.progwml6.com/files/maven"}
     }
 
     configurations.all {
@@ -31,4 +34,3 @@ subprojects {
         }
     }
 }
-

@@ -9,8 +9,8 @@ minecraft {
 }
 
 dependencies {
-    implementation project(':tesa-core')
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile project(':tesa-core')
+    shadow fileTree(dir: 'libs', include: '*.jar')
 }
 
 processResources {
@@ -30,4 +30,12 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+tasks.withType(AbstractCompile) {
+    classpath += configurations.shadow
+}
+
+shadowJar {
+    baseName = "${archivesBaseName}-${project.minecraft.version}"
 }

@@ -20,7 +20,7 @@ public class VanillaTesaExecutor {
     public void updateTracker (Tessellator tessellator, Context context) {
         final UsageTracker usageTracker = tessellator.getUsageTracker();
 
-        if (usageTracker.getTimeDelta() > 2 * 1000) {
+        if (usageTracker.getTimeDelta() > 10 * 1000) {
             context.getPlayer().sendMessage(new TextComponentString("Tesa is still enabled !"));
         }
 
