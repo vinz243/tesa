@@ -1,11 +1,16 @@
-archivesBaseName = "tesa-chisels"
 
-sourceCompatibility = targetCompatibility = '1.8'
+archivesBaseName = "tesa-cmd"
 
+sourceCompatibility = targetCompatibility = '1.8'// Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
 repositories {
     maven {
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    maven { url = 'http://maven.sk89q.com/repo/' }
+    maven { url = 'https://repo.spongepowered.org/maven/'}
 }
 
 minecraft {
@@ -14,9 +19,13 @@ minecraft {
     mappings = "snapshot_20171003"
 }
 
+
 dependencies {
+    shadow (group: 'com.sk89q.worldedit', name: 'worldedit-core', version: '6.1.4-SNAPSHOT')
+    shadow (group: 'com.sk89q.worldedit', name: 'worldedit-forge-mc1.11', version: '6.1.6')
+    shadow (group: 'mod.chiselsandbits', name: 'chiselsandbits', version: '14.0.172')
     compile project(':tesa-core')
-    implementation 'mod.chiselsandbits:chiselsandbits:14.0.172'
+    minecraft
 }
 
 processResources {
@@ -40,14 +49,8 @@ processResources {
 
 shadowJar {
     dependencies {
+        exclude('com.sk89q.worldedit::')
         exclude('mod.chiselsandbits:chiselsandbits::')
     }
-}
-
-tasks.withType(AbstractCompile) {
-    classpath += configurations.shadow
-}
-
-shadowJar {
     baseName = "${archivesBaseName}-${project.minecraft.version}"
 }
